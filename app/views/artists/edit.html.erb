@@ -1,0 +1,21 @@
+<form action="/artists/<%= @artist.id %>" method="POST" />
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+  <input type="hidden" name="_method" value="PUT" />
+
+  <label>
+    Name:
+    <input type="text" name="name" value="<%= @artist.name %>" />
+  </label>
+
+  <label>
+    Genre:
+    <input type="text" name="genre" value="<%= @artist.genre %>" />
+  </label>
+
+  <label>
+    Photo URL:
+    <input type="url" name="photo_url" value="<%= @artist.photo_url %>" />
+  </label>
+
+  <button>Update Artist</button>
+</form>
