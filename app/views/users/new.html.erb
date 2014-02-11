@@ -1,0 +1,62 @@
+<h1>Sign up!</h1>
+
+<% unless @user.nil? %>
+  <div id="errors"/>
+    <h3>Errors</h3>
+    <ul>
+      <% @user.errors.messages.each do |field, error| %>
+        <li><em><%= "#{field.capitalize}: #{error.first}" %></em></li>
+      <% end %>
+      <br/>
+    </ul>
+  </div>
+<% end %>
+
+
+<form action="/users" method="POST" />
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+  <label>
+    First name:
+    <input type="text" name="first_name" />
+  </label>
+  <br/>
+
+  <label>
+    Last name:
+    <input type="text" name="last_name" />
+  </label>
+  <br/>
+
+  <label>
+    Email:
+    <input type="email" name="email" />
+  </label>
+  <br/>
+
+  <label>
+    Password:
+    <input type="text" name="password" />
+  </label>
+  <br/>
+
+  <label>
+    Sex:
+    <input type="text" name="sex" />
+  </label>
+  <br/>
+
+  <label>
+    Date of Birth:
+    <input type="date" name="date_of_birth" />
+  </label>
+  <br/>
+
+  <label>
+    Facebook link:
+    <input type="url" name="facebook_link" />
+  </label>
+  <br/>
+
+  <button>Join Tunr!</button>
+</form>
