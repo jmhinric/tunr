@@ -8,6 +8,11 @@ class SongsController < ApplicationController
   end
 
   def create
+    # @song = Song.new()
+    @song.artist = @artist
+    @song.preview_url = 
+
+
     @song = @artist.songs.create(song_params)
     if @song.valid?
       redirect_to artist_path(@artist)

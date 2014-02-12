@@ -46,4 +46,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'pry-rails', group: [:development, :test]
 
+gem 'httparty'
+
 
