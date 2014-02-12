@@ -1,64 +1,6 @@
 <h1>Edit Profile</h1>
 
-<% unless @update_worked %>
-<% unless @user.errors.messages.empty? %>
-  <div id="errors"/>
-    <h3>Errors</h3>
-    <ul>
-      <% @user.errors.messages.each do |field, error| %>
-        <li><em><%= "#{field.capitalize}: #{error.first}" %></em></li>
-      <% end %>
-      <br/>
-    </ul>
-  </div>
-<% end %>
+<%= render "errors" %>
 
-
-<form action="/users/<%= @user.id %>" method="POST" />
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-  <input type="hidden" name="_method" value="PUT" />
-
-  <label>
-    First name:
-    <input type="text" name="first_name" value="<%= @user.first_name %>" />
-  </label>
-  <br/>
-
-  <label>
-    Last name:
-    <input type="text" name="last_name" value="<%= @user.last_name %>" />
-  </label>
-  <br/>
-
-  <label>
-    Email:
-    <input type="email" name="email" value="<%= @user.email %>" />
-  </label>
-  <br/>
-
-  <label>
-    Password:
-    <input type="password" name="password" value="<%= @user.password %>" />
-  </label>
-  <br/>
-
-  <label>
-    Sex:
-    <input type="text" name="sex" value="<%= @user.sex %>" />
-  </label>
-  <br/>
-
-  <label>
-    Date of Birth:
-    <input type="date" name="date_of_birth" value="<%= @user.date_of_birth %>" />
-  </label>
-  <br/>
-
-  <label>
-    Facebook link:
-    <input type="url" name="facebook_link" value="<%= @user.facebook_link %>" />
-  </label>
-  <br/>
-
-  <button>Update Profile</button>
-</form>
+<%= render "form" %>
+  

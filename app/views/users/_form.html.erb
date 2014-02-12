@@ -1,0 +1,27 @@
+<%= form_for @user do |f| %> 
+  <%= f.label :first_name %>:
+  <%= f.text_field :first_name %><br/>
+
+  <%= f.label :last_name %>:
+  <%= f.text_field :last_name %><br/>
+
+  <%= f.label :email %>:
+  <%= f.email_field :email %><br/>
+
+  <%= f.label :password %>:
+  <%= f.password_field :password %><br/>
+
+  <%= f.label "Male" %>
+  <%= f.radio_button(:sex, "male") %>
+  <%= f.label "Female" %>
+  <%= f.radio_button(:sex, "female") %>
+  <br/>
+
+  <%= f.label :date_of_birth %>:
+  <%= f.date_field :date_of_birth %><br/>
+  
+  <%= f.label :facebook_link %>:
+  <%= f.url_field :facebook_link %><br/>
+
+  <%= f.submit %>
+<% end %>

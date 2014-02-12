@@ -1,0 +1,16 @@
+<% @artists.each do |artist| %>
+  <img src="<%= artist.photo_url %>" />
+  <br/>
+
+  <%= link_to "#{artist.name}", artist_path(artist) %>
+  
+  <br/><br/>
+
+  <%= link_to "Edit", edit_artist_path(artist) %>
+
+  <%= form_for artist, method: :delete do |f| %>
+    <%= f.submit "Delete Artist" %>
+  <% end %>
+  
+  <br/><br/>
+<% end %>

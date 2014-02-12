@@ -7,14 +7,12 @@
   <li>Facebook: <%= @user.facebook_link %></li>
 </ul>
 
-<a href="/users/<%= @user.id %>/edit">Edit Profile</a>
+<%= link_to "Edit Profile", edit_user_path(@user) %>
 
 <br/><br/>
 
-<form action="/users/<%= @user.id %>" method="POST" />
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-  <input type="hidden" name="_method" value="DELETE" />
-  <button>Delete Account</button>
-</form>
+<%= form_for @user, method: :delete do |f| %>
+  <%= f.submit "Delete User" %>
+<% end %>
 
 <%= debug @user %>

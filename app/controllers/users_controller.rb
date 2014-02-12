@@ -6,15 +6,14 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create
     @user = User.create(user_params)
-    
     if @user.valid?
-      redirect_to "/users/#{@user.id}"
+      redirect_to user_path @user
     else
-      @user.errors.messages
       render :new
     end
   end
@@ -23,12 +22,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @update_worked = @user.update(user_params)
-
-    if @update_worked
-      redirect_to "/users/#{@user.id}"
+    if @user.update(user_params)
+      redirect_to user_path @user
     else
-      @user.errors.messages
       render :edit
     end
   end
@@ -45,28 +41,28 @@ class UsersController < ApplicationController
     end
 
     def user_params
+      params.require(:user).permit(:id, :first_name, :last_name, :email, :password, :date_of_birth, :sex, :facebook_link)
+    # if params[:password].empty?
+    #   return {
+    #     email: params[:email],
+    #     first_name: params[:first_name],
+    #     last_name: params[:last_name],
+    #     date_of_birth: params[:date_of_birth],
+    #     sex: params[:sex],
+    #     facebook_link: params[:facebook_link]
+    #   }
+    # else
+    #   return {
+    #     email: params[:email],
+    #     first_name: params[:first_name],
+    #     last_name: params[:last_name],
+    #     date_of_birth: params[:date_of_birth],
+    #     sex: params[:sex],
+    #     facebook_link: params[:facebook_link],
+    #     password: params[:password]
+    #   }
+    # end
 
-    if params[:password].empty?
-      return {
-        email: params[:email],
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        date_of_birth: params[:date_of_birth],
-        sex: params[:sex],
-        facebook_link: params[:facebook_link]
-      }
-    else
-      return {
-        email: params[:email],
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        date_of_birth: params[:date_of_birth],
-        sex: params[:sex],
-        facebook_link: params[:facebook_link],
-        password: params[:password]
-      }
     end
-
-  end
 
 end

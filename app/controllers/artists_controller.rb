@@ -11,6 +11,7 @@ class ArtistsController < ApplicationController
   end
 
   def new
+    @artist = Artist.new
   end
 
   def create
@@ -22,8 +23,11 @@ class ArtistsController < ApplicationController
   end
 
   def update
-    @artist.update(artist_params)
-    redirect_to "/artists"
+    if @artist.update(artist_params)
+      redirect_to artists_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -39,11 +43,12 @@ class ArtistsController < ApplicationController
     end
 
     def artist_params
-      return {
-        name: params[:name],
-        genre: params[:genre],
-        photo_url: params[:photo_url]
-      }
+      params.require(:artist).permit(:id, :name, :genre, :photo_url)
+      # return {
+      #   name: params[:name],
+      #   genre: params[:genre],
+      #   photo_url: params[:photo_url]
+      # }
     end
 
 end

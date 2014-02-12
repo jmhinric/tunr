@@ -1,0 +1,16 @@
+<ul>
+<% @songs.each do |song| %>
+  <li><%= song.title %>, 
+      <%= song.year %> 
+      <br/>
+      
+      <%= link_to "Edit", edit_artist_song_path(@artist, song)%>
+
+      <%= form_for [@artist, song], method: :delete do |f| %>
+        <%= f.submit "Delete Song" %>
+      <% end %>
+
+      
+  </li>
+<% end %>
+</ul>
