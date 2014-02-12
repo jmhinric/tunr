@@ -8,7 +8,17 @@
 </head>
 <body>
 
+<header>
+  <%= link_to "Home", root_path %>
+  <p><%= link_to "Please log in!", login_path if session[:user_id].nil? %></p>
+  <p><%= link_to "Log Out #{User.find(session[:user_id]).first_name}", session_path, method: "delete" unless session[:user_id].nil? %></p>
+</header>
+
 <%= yield %>
+
+<p>Session:</p>
+<%= debug session.to_hash %>
+<br/>
 
 </body>
 </html>

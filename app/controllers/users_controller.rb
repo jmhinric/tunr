@@ -41,28 +41,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:id, :first_name, :last_name, :email, :password, :date_of_birth, :sex, :facebook_link)
-    # if params[:password].empty?
-    #   return {
-    #     email: params[:email],
-    #     first_name: params[:first_name],
-    #     last_name: params[:last_name],
-    #     date_of_birth: params[:date_of_birth],
-    #     sex: params[:sex],
-    #     facebook_link: params[:facebook_link]
-    #   }
-    # else
-    #   return {
-    #     email: params[:email],
-    #     first_name: params[:first_name],
-    #     last_name: params[:last_name],
-    #     date_of_birth: params[:date_of_birth],
-    #     sex: params[:sex],
-    #     facebook_link: params[:facebook_link],
-    #     password: params[:password]
-    #   }
-    # end
-
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :date_of_birth, :sex, :facebook_link)
     end
 
 end
