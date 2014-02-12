@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  validates :first_name, :last_name, :date_of_birth, :email, :password, presence: true
+  validates :first_name, :last_name, :date_of_birth, :email, presence: true
   validates :email, uniqueness: true
-  
-  # has_many :artists, dependent: :destroy
+  has_secure_password
+
 end

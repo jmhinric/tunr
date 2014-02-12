@@ -10,8 +10,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.valid?
+    # @user = User.create(user_params)
+    @user = User.new(user_params)
+    if @user.save
+    # if @user.valid?
       redirect_to user_path @user
     else
       render :new
@@ -30,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    session[:user_id] = nil if session[:user_id]
     @user.destroy
     redirect_to "/"
   end
@@ -41,7 +44,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :date_of_birth, :sex, :facebook_link)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :date_of_birth, :sex, :facebook_link)
     end
 
 end
