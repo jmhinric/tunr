@@ -8,12 +8,14 @@ class SongsController < ApplicationController
   end
 
   def create
-    # @song = Song.new()
-    @song.artist = @artist
-    @song.preview_url = 
+    @song = Song.new(song_params)
+    # @song.artist = @artist
+    @song.preview_url = get_preview_url(@artist.name, @song.title)
+    @artist.songs << @song
+    @song.save
 
 
-    @song = @artist.songs.create(song_params)
+    # @song = @artist.songs.create(song_params)
     if @song.valid?
       redirect_to artist_path(@artist)
     else
@@ -54,5 +56,18 @@ class SongsController < ApplicationController
       #   artist_id: params[:artist_id]
       # }
     end
+
+    def get_preview_url(artist, song)
+      # search_artist = artist.split(" ").join("+")
+      search_artist = artist.gsub(' ', '+')
+      # search_song = song.split(" ").join("+")
+      search_song = song.gsub(' ', '+')
+
+      itunes_search = HTTParty.get "https://itunes.apple.com/search?term=#{search_artist}+#{search_song}&media=music&entity=musicTrack&limit=1"
+      from_itunes_hash = JSON(itunes_search)
+      return from_itunes_hash["results"][0]["previewUrl"]
+    end
+
+
 
 end
